@@ -14,29 +14,10 @@ class PokemonProfileController extends Controller
      */
     public function index()
     {
-        //
+        return view('pokemon.index.blader');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+    
 
     /**
      * Display the specified resource.
@@ -55,22 +36,6 @@ class PokemonProfileController extends Controller
      * @param  \PokeApp\Models\PokemonProfile  $pokemonProfile
      * @return \Illuminate\Http\Response
      */
-    public function edit(PokemonProfile $pokemonProfile)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \PokeApp\Models\PokemonProfile  $pokemonProfile
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, PokemonProfile $pokemonProfile)
-    {
-        //
-    }
 
     /**
      * Remove the specified resource from storage.
@@ -78,8 +43,8 @@ class PokemonProfileController extends Controller
      * @param  \PokeApp\Models\PokemonProfile  $pokemonProfile
      * @return \Illuminate\Http\Response
      */
-    public function destroy(PokemonProfile $pokemonProfile)
+    public function loader(PokemonProfile $pokemonProfile)
     {
-        //
+        return view('pokemon.loader');
     }
 }

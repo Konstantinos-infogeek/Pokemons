@@ -14,7 +14,7 @@ class PokemonController extends Controller
      */
     public function index()
     {
-        //
+        return ['pokemon' => 10];
     }
 
     /**
@@ -34,6 +34,6 @@ class PokemonController extends Controller
      * @return void
      */
     public function load(){
-
+      return ['loader' => 'load'];
     }
 }

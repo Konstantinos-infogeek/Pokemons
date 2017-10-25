@@ -13,6 +13,10 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+//Api version 1
+Route::group([ "prefix" => "v1", "namespace" => 'Api'], function () {
+  Route::get('pokemon', ['as' => 'api.pokemon.index', 'uses' => 'PokemonController@index']);
+  Route::post('pokemon/load', ['as' => 'api.pokemon.load', 'uses' => 'PokemonController@load']);
 });
+
+
