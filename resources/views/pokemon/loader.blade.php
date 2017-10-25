@@ -18,6 +18,7 @@
                             <div class="col-sm-10">
                                 <input type="url" class="form-control"
                                        id="api-url"
+                                       name="api-url"
                                        value="http://pokeapi.co/api/v2/pokemon/?limit=99999"
                                        readonly>
                             </div>
