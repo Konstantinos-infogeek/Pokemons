@@ -61,9 +61,22 @@
         <!-- Main Menu -->
         <div class="side-menu-container">
             <ul class="nav navbar-nav">
-                <li><a href="#"><span class="glyphicon glyphicon-home"></span> Home</a></li>
-                <li><a href="#"><span class="glyphicon glyphicon-cog"></span> Load Pokemnos</a></li>
-                <li><a href="#"><span class="glyphicon glyphicon-th-list"></span> Show Pokemons</a></li>
+                <li>
+                    <a href="{{route('home.index')}}">
+                        <span class="glyphicon glyphicon-home"></span> Home
+                    </a>
+                </li>
+                <li>
+                    <a href="{{route('web.pokemon.loader')}}">
+                        <span class="glyphicon glyphicon-cog"></span> Load
+                        Pokemons
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="glyphicon glyphicon-th-list"></span> Show Pokemons
+                    </a>
+                </li>
             </ul>
         </div><!-- /.navbar-collapse -->
     </nav>
