@@ -16,7 +16,7 @@ Route::get('/', ['as' => 'home.index', 'uses' => 'HomeController@index']);
 
 //Pokemon Section
 Route::prefix('pokemon')->group(function(){
-  Route::get('index', ['as' => 'web.pokemon.index', 'uses' => 'PokemonProfileController@index']);
-  Route::get('loader', ['as' => 'web.pokemon.loader', 'uses' => 'PokemonProfileController@loader']);
+  Route::get('index', ['as' => 'web.pokemon.index', 'uses' => 'PokemonController@index']);
+  Route::get('loader', ['as' => 'web.pokemon.loader', 'uses' => 'PokemonController@loader']);
 });
 
