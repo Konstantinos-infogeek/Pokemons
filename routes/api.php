@@ -16,7 +16,8 @@ use Illuminate\Http\Request;
 //Api version 1
 Route::group([ "prefix" => "v1", "namespace" => 'Api'], function () {
   Route::get('pokemon', ['as' => 'api.pokemon.index', 'uses' => 'PokemonController@index']);
-  Route::post('pokemon/load', ['as' => 'api.pokemon.load/{url}', 'uses' => 'PokemonController@load']);
+  Route::post('pokemon/load', ['as' => 'api.pokemon.load', 'uses' => 'PokemonController@load']);
+  Route::post('pokemon/store', ['as' => 'api.pokemon.load', 'uses' => 'PokemonController@store']);
 });
 
 

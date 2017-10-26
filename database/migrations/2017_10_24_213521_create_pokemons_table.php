@@ -13,9 +13,9 @@ class CreatePokemonsTable extends Migration
      */
     public function up()
     {
-        Schema::create('pokemon', function (Blueprint $table) {
-            $table->integer('id');
-            $table->string('api_url');
+        Schema::create('pokemons', function (Blueprint $table) {
+            $table->integer('id')->unique();
+            $table->string('api_url')->unique();
             $table->string('name');
             $table->json('profile');
             $table->timestamps();
