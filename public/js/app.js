@@ -43950,7 +43950,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 function evaluatePage(pageNumber) {
-    return pageNumber >= 1 ? pageNumber : 0;
+    return pageNumber >= 1 ? pageNumber : 1;
 }
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -43972,14 +43972,17 @@ function evaluatePage(pageNumber) {
     methods: {
         getPage: function getPage(page) {
             var that = this;
-            axios.get('/api/v1/pokemon/highlighted/?page=' + page).then(function (response) {
-                that._data.pageContent = response.data.data;
 
-                that._data.page = response.data.current_page;
-                that._data.previous = evaluatePage(response.data.current_page - 1);
-                that._data.next = evaluatePage(response.data.current_page + 1);
-                that._data.max = response.data.last_page;
-            });
+            if (page <= that._data.max) {
+                axios.get('/api/v1/pokemon/highlighted/?page=' + page).then(function (response) {
+
+                    that._data.pageContent = response.data.data;
+                    that._data.page = response.data.current_page;
+                    that._data.previous = evaluatePage(response.data.current_page - 1);
+                    that._data.next = evaluatePage(response.data.current_page + 1);
+                    that._data.max = response.data.last_page;
+                });
+            }
         }
     }
 });
@@ -44062,7 +44065,14 @@ var render = function() {
                   ]
                 ),
                 _vm._v(" "),
-                _c("li", [_vm._v("Current Page: " + _vm._s(_vm.page))]),
+                _c("li", [
+                  _vm._v(
+                    "Current Page: " +
+                      _vm._s(_vm.page) +
+                      " / " +
+                      _vm._s(_vm.max)
+                  )
+                ]),
                 _vm._v(" "),
                 _c(
                   "li",

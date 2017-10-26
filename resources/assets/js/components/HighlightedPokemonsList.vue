@@ -34,7 +34,7 @@
                                 <li :class="{ 'previous': true, 'disabled': previous < 1 }">
                                     <a href="#" v-on:click.prevent="getPage(previous)"><span aria-hidden="true">&larr;</span> Older</a>
                                 </li>
-                                <li>Current Page: {{page}}</li>
+                                <li>Current Page: {{page}} / {{max}}</li>
                                 <li :class="{ 'next': true, 'disabled': next > max  }">
                                     <a href="#" v-on:click.prevent="getPage(next)">Newer <span aria-hidden="true">&rarr;</span></a>
                                 </li>
@@ -50,7 +50,7 @@
 
 <script>
     function evaluatePage(pageNumber){
-        return pageNumber >= 1 ? pageNumber : 0;
+        return pageNumber >= 1 ? pageNumber : 1;
     }
 
     export default {
@@ -72,16 +72,19 @@
         methods: {
             getPage: function (page) {
                 let that = this;
-                axios
-                    .get('/api/v1/pokemon/highlighted/?page='+page)
-                    .then(function (response) {
-                        that._data.pageContent = response.data.data;
 
-                        that._data.page = response.data.current_page;
-                        that._data.previous = evaluatePage(response.data.current_page - 1);
-                        that._data.next = evaluatePage(response.data.current_page + 1);
-                        that._data.max = response.data.last_page;
-                    });
+                if(page <= that._data.max) {
+                    axios
+                        .get('/api/v1/pokemon/highlighted/?page=' + page)
+                        .then(function (response) {
+
+                            that._data.pageContent = response.data.data;
+                            that._data.page        = response.data.current_page;
+                            that._data.previous    = evaluatePage(response.data.current_page - 1);
+                            that._data.next        = evaluatePage(response.data.current_page + 1);
+                            that._data.max         = response.data.last_page;
+                        });
+                }
             }
         }
     }
