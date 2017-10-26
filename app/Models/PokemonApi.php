@@ -29,6 +29,9 @@ class PokemonApi extends Model
     }
   
   /**
+   * Makes a request for a single pokemon profile and returns the contents (json)
+   * of the response, if the request has success code (200)
+   *
    * @param $id
    * @return string
    */

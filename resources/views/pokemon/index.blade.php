@@ -2,7 +2,7 @@
 
 @section('page-content')
     <div class="col-md-12">
-        <header>
+        <header style="padding-bottom: 2em;">
             <h1>List of the Biggest Pokemons
                 <small><em>BMRi can't accurately measure these giants</em></small>
             </h1>

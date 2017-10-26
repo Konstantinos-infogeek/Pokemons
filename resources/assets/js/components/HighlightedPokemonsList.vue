@@ -6,7 +6,7 @@
             <div class="col-sm-12">
                 <div class="container-fluid">
                     <div class="row">
-                        <table class="table table-hover" id="pokemon-table">
+                        <table class="table table-hover" id="pokemon-table" v-if="pageContent">
                             <thead>
                                 <tr>
                                     <th>Sprite</th>
@@ -17,22 +17,27 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
+                                <tr v-for="pokemon in pageContent">
                                     <td>
-                                        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png">
+                                        <img :src="pokemon.sprite">
                                     </td>
-                                    <td>Bulbasaur</td>
-                                    <td>5</td>
-                                    <td>3</td>
-                                    <td>64</td>
+                                    <td class="text-capitalize">{{pokemon.name}}</td>
+                                    <td>{{pokemon.height}}</td>
+                                    <td>{{pokemon.weight}}</td>
+                                    <td>{{pokemon.experience}}</td>
                                 </tr>
                             </tbody>
                         </table>
 
                         <nav>
                             <ul class="pager">
-                                <li class="previous"><a href="#"><span aria-hidden="true">&larr;</span> Older</a></li>
-                                <li class="next"><a href="#">Newer <span aria-hidden="true">&rarr;</span></a></li>
+                                <li :class="{ 'previous': true, 'disabled': previous < 1 }">
+                                    <a href="#" v-on:click.prevent="getPage(previous)"><span aria-hidden="true">&larr;</span> Older</a>
+                                </li>
+                                <li>Current Page: {{page}}</li>
+                                <li :class="{ 'next': true, 'disabled': next > max  }">
+                                    <a href="#" v-on:click.prevent="getPage(next)">Newer <span aria-hidden="true">&rarr;</span></a>
+                                </li>
                             </ul>
                         </nav>
                     </div>
@@ -44,19 +49,40 @@
 </template>
 
 <script>
+    function evaluatePage(pageNumber){
+        return pageNumber >= 1 ? pageNumber : 0;
+    }
+
     export default {
         data: function () {
             return {
+                page: 1,
+                pageContent: false,
+                previous: 0,
+                next: 2,
+                max: 9999
             };
         },
         mounted(){
-
         },
         created() {
             let that = this;
+            that.getPage(that._data.page);
         },
         methods: {
+            getPage: function (page) {
+                let that = this;
+                axios
+                    .get('/api/v1/pokemon/highlighted/?page='+page)
+                    .then(function (response) {
+                        that._data.pageContent = response.data.data;
 
+                        that._data.page = response.data.current_page;
+                        that._data.previous = evaluatePage(response.data.current_page - 1);
+                        that._data.next = evaluatePage(response.data.current_page + 1);
+                        that._data.max = response.data.last_page;
+                    });
+            }
         }
     }
 </script>
