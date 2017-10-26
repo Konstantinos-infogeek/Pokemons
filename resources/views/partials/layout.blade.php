@@ -39,7 +39,7 @@
                 <!-- Brand -->
                 <div class="brand-name-wrapper">
                     <a class="navbar-brand" href="#">
-                        PokeApp
+                        {{config('app.name')}} <img style="display: inline-block" src="{{asset('images/pokemon.png')}}" alt="{{config('app.name')}}">
                     </a>
                 </div>
 
@@ -49,16 +49,16 @@
                 </a>  --}}
 
                 <!-- Search body -->
-                <div id="search" class="panel-collapse collapse">
-                    <div class="panel-body">
-                        <form class="navbar-form" role="search">
-                            <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Search">
-                            </div>
-                            <button type="submit" class="btn btn-default "><span class="glyphicon glyphicon-ok"></span></button>
-                        </form>
-                    </div>
-                </div>
+                {{--<div id="search" class="panel-collapse collapse">--}}
+                    {{--<div class="panel-body">--}}
+                        {{--<form class="navbar-form" role="search">--}}
+                            {{--<div class="form-group">--}}
+                                {{--<input type="text" class="form-control" placeholder="Search">--}}
+                            {{--</div>--}}
+                            {{--<button type="submit" class="btn btn-default "><span class="glyphicon glyphicon-ok"></span></button>--}}
+                        {{--</form>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
             </div>
 
         </div>

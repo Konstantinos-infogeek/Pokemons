@@ -13,7 +13,13 @@ class PokemonController extends ApiController
 	
     private $pokemon_api;
     private $trasformer;
-  
+	
+	/**
+	 * PokemonController constructor.
+	 *
+	 * @param \PokeApp\Models\PokemonApi $pokemon_api
+	 * @param \PokeApp\Http\Transformers\PokeApiResponseTransformer $transformer
+	 */
     public function __construct(Poke $pokemon_api, PokeApiResponseTransformer
     $transformer) {
       $this->pokemon_api = $pokemon_api;
@@ -42,9 +48,10 @@ class PokemonController extends ApiController
     }
     
     /**
-     * Undocumented function
+     * Retrieves a json document with all pokemons, from
+     * the pokeapi.
      *
-     * @return string
+     * @return \Illuminate\Http\JsonResponse
      */
     public function load(Request $request){
       $url = $request->input('api-url');
@@ -56,9 +63,18 @@ class PokemonController extends ApiController
     }
   
     /**
+     * Retrieves a list of pokemons from cache and iterates through
+     * them to get for each the profile json, and store the
+     * formatted output to the database
+     *
      * @param \Illuminate\Http\Request $request
+     * @returns \Illuminate\Http\JsonResponse
      */
     public function store(Request $request) {
+	  if ( Pokemon::all()->count() > 0 ) { //Checks database if data already exists
+		    return $this->respondWithSuccess( [ 'message' => 'Data already exists!' ] );
+	  }
+    	
       $results = collect($this->loadTransformedData()['results']);
       $pokemons = [];
       
@@ -72,10 +88,8 @@ class PokemonController extends ApiController
         usleep(200);
       });
       
-      //Store in the database if all requests have been satisfied
-	    if(Pokemon::all()->count() == 0){
-		    $dbResult = Pokemon::storeAllIf($pokemons, count($pokemons) == $results->count());
-	    } else { return $this->respondWithSuccess(['message' => 'Data already exists!']); }
+	  //Store in the database if all requests have been satisfied
+	  $dbResult = Pokemon::storeAllIf( $pokemons, count( $pokemons ) == $results->count() );
       
       return !!$dbResult
 	      ? $this->respondWithSuccess()
@@ -97,12 +111,19 @@ class PokemonController extends ApiController
   }
   
   /**
+   * Formats data for database insertion
+   *
    * @param $item
    * @param $data
    * @return array
    */
   private function formatItem($item, $data){
+  	// Logs the progress of the retrieval script, in order to provide
+	// a hard evidence of the process, if it takes too long to
+	// to complete
   	Log::info($item);
+  	
+  	//returns an array formated for the ::insert method
     return [
     	'id' => $this->getPokemonIdFromUrl($item['url']),
 	    'api_url' => $item['url'],
@@ -111,6 +132,8 @@ class PokemonController extends ApiController
   }
 	
 	/**
+	 * Extracts numeric id from pokemon's api url
+	 *
 	 * @param string $url
 	 * @return integer
 	 */

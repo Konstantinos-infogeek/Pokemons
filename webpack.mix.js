@@ -17,4 +17,4 @@ mix.js('resources/assets/js/app.js', 'public/js')
         'node_modules/toastr/build/toastr.min.css'
     ], 'public/css/components.css');
 
-mix.copy('./resources/assets/images/icons/', './public/images/icons/');
+mix.copy('./resources/assets/images/', './public/images/');

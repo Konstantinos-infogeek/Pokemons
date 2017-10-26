@@ -1,5 +1,5 @@
 <template>
-    <div class="panel panel-default pull-down" v-if="pokemons">
+    <div class="panel panel-primary pull-down" v-if="pokemons">
         <div class="panel-heading">
             <h4>Store retrieved data to the Database</h4>
         </div>

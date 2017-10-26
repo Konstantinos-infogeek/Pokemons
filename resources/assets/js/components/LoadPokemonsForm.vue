@@ -1,5 +1,5 @@
 <template>
-    <div class="panel panel-default pull-down">
+    <div class="panel panel-primary pull-down">
         <div class="panel-heading">
             <h4>Import Some Pokemon</h4>
         </div>
@@ -22,7 +22,7 @@
                             <button type="submit" class="btn btn-default">
                                 Load <span class="loader" v-if="loaderActive"></span>
                             </button>
-                            <span v-if="count > 0">Count: {{count}}</span>
+                            <span v-if="count > 0" style="vertical-align: sub">Found: <span style="font-style: italic;">{{count}} Pokemons</span></span>
                         </div>
                     </div>
                 </form>
