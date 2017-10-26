@@ -49,22 +49,29 @@
 </template>
 
 <script>
+
+    /**
+     * Stop pages from getting invalid (negative) page numbers
+     *
+     * @param pageNumber
+     * @return {number}
+     */
     function evaluatePage(pageNumber){
         return pageNumber >= 1 ? pageNumber : 1;
     }
 
+    //Component Module
     export default {
         data: function () {
             return {
                 page: 1,
-                pageContent: false,
+                pageContent: false, //contains the list of pokemons
                 previous: 0,
                 next: 2,
                 max: 9999
             };
         },
-        mounted(){
-        },
+        //This method downloads the content for the first time
         created() {
             let that = this;
             that.getPage(that._data.page);
@@ -73,11 +80,12 @@
             getPage: function (page) {
                 let that = this;
 
-                if(page <= that._data.max) {
+                if(page <= that._data.max) { //Block from calling page numbers bigger than last page
                     axios
                         .get('/api/v1/pokemon/highlighted/?page=' + page)
                         .then(function (response) {
 
+                            //Assign new data from api response
                             that._data.pageContent = response.data.data;
                             that._data.page        = response.data.current_page;
                             that._data.previous    = evaluatePage(response.data.current_page - 1);
