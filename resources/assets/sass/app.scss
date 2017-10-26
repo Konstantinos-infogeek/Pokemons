@@ -403,3 +403,13 @@ Loader Styles
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+
+/************************************
+
+Targeted Styles
+*************************************/
+
+#pokemon-table {
+  td, th { text-align: center }
+  td { vertical-align: middle; font-size: 1.3em;}
+}

@@ -55,6 +55,7 @@
             post: function () {
                 let that = this;
                 that._data.loaderActive = true;
+
                 axios.post('/api/v1/pokemon/store', {})
                     .then(function (response) {
                         that._data.loaderActive = false;
@@ -62,6 +63,7 @@
                         if(response.data.code == 100){
                             toastr.success(response.data.message);
                         }
+                        broadcaster.$emit('storeFilteredPokemonsCompleted', response.data);
                     });
             }
         }

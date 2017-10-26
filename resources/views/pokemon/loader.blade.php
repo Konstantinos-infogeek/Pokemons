@@ -8,6 +8,8 @@
         <load-pokemons-form></load-pokemons-form>
 
         <store-filtered-pokemon-form></store-filtered-pokemon-form>
+
+        <highlight-pokemon-form></highlight-pokemon-form>
     </div>
 
 @endsection

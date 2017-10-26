@@ -14,7 +14,7 @@ class PokemonController extends Controller
    */
   public function index()
   {
-    return view('pokemon.index.blader');
+    return view('pokemon.index');
   }
   
   

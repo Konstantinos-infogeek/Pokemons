@@ -78,7 +78,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="{{route('web.pokemon.index')}}">
                         <span class="glyphicon glyphicon-th-list"></span> Show Pokemons
                     </a>
                 </li>

@@ -22,7 +22,7 @@
                             <button type="submit" class="btn btn-default">
                                 Load <span class="loader" v-if="loaderActive"></span>
                             </button>
-                            <span v-if="count > 0" style="vertical-align: sub">Found: <span style="font-style: italic;">{{count}} Pokemons</span></span>
+                            <span v-if="count > 0" style="vertical-align: sub">Found: <em style="opacity: 0.8;">{{count}} Pokemons</em></span>
                         </div>
                     </div>
                 </form>

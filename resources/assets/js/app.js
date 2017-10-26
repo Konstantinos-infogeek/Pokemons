@@ -59,7 +59,17 @@ Vue.component(
 
 Vue.component(
     'store-filtered-pokemon-form',
-    require('./components/StoreFilteredPokemonForm.vue')
+    require('./components/StoreFilteredPokemonsForm.vue')
+);
+
+Vue.component(
+    'highlight-pokemon-form',
+    require('./components/HighlightPokemonsForm.vue')
+);
+
+Vue.component(
+    'highlighted-pokemon-list',
+    require('./components/HighlightedPokemonsList.vue')
 );
 
 const app = new Vue({

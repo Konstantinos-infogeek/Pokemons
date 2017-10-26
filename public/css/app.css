@@ -8787,3 +8787,18 @@ Loader Styles
   }
 }
 
+/************************************
+
+Targeted Styles
+*************************************/
+
+#pokemon-table td,
+#pokemon-table th {
+  text-align: center;
+}
+
+#pokemon-table td {
+  vertical-align: middle;
+  font-size: 1.3em;
+}
+
