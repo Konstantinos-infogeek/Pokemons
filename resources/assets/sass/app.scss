@@ -48,7 +48,7 @@ SideBar Styles
     position: fixed;
     width: 300px;
     height: 100%;
-    background-color: #f8f8f8;
+    background-color: rgba(255, 252, 252, 0.84);
     border-right: 1px solid #e7e7e7;
     margin-left: -10px;
   }
@@ -409,7 +409,18 @@ Loader Styles
 Targeted Styles
 *************************************/
 
+
 #pokemon-table {
   td, th { text-align: center }
   td { vertical-align: middle; font-size: 1.3em;}
+}
+
+#find-out-the-king {
+  background-image: url('/images/slowking.png');
+  line-height: 4.6em;
+  height: 6.6em;
+  background-repeat: no-repeat;
+  background-size: 5em;
+  background-position: .8em;
+  margin-bottom: 3em;
 }

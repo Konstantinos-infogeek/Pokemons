@@ -14,6 +14,7 @@ class Pokemon extends Model
 {
     protected $table = 'pokemons';
     protected $fillable = ['id', 'name', 'api_url', 'profile'];
+    protected $appends = ['statTotal'];
 	
 	/**
 	 * Allows saving of multiple values to database if the given condition is true
@@ -63,5 +64,13 @@ class Pokemon extends Model
 	public function getProfileAttribute($value)
 	{
 		return \GuzzleHttp\json_decode($value);
+	}
+	
+	public function getStatTotalAttribute(){
+		$sum = 0;
+		foreach ($this->profile->stats as $stat){
+			$sum += $stat->base_stat;
+		}
+		return $sum;
 	}
 }

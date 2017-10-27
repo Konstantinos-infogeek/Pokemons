@@ -67,6 +67,7 @@ Vue.component(
     require('./components/HighlightPokemonsForm.vue')
 );
 
+//List Component
 Vue.component(
     'highlighted-pokemon-list',
     require('./components/HighlightedPokemonsList.vue')

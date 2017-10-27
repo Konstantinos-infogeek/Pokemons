@@ -11405,6 +11405,7 @@ Vue.component('store-filtered-pokemon-form', __webpack_require__(45));
 
 Vue.component('highlight-pokemon-form', __webpack_require__(48));
 
+//List Component
 Vue.component('highlighted-pokemon-list', __webpack_require__(51));
 
 var app = new Vue({
@@ -43948,6 +43949,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 /**
@@ -43968,7 +43976,10 @@ function evaluatePage(pageNumber) {
             pageContent: false, //contains the list of pokemons
             previous: 0,
             next: 2,
-            max: 9999
+            max: 9999,
+            king: false,
+            kingMessage: "Find Out The King",
+            kingSprite: '/images/slowking.png'
         };
     },
     //This method downloads the content for the first time
@@ -43993,6 +44004,15 @@ function evaluatePage(pageNumber) {
                     that._data.max = response.data.last_page;
                 });
             }
+        },
+        getTheKing: function getTheKing() {
+            var that = this;
+            axios.get('/api/v1/pokemon/king').then(function (response) {
+                //Assign new data from api response
+                that._data.king = response.data;
+                that._data.kingMessage = "The king is " + '<span class="text-capitalize">' + that._data.king.owner.name + '</span>';
+                that._data.kingSprite = that._data.king.sprite;
+            });
         }
     }
 });
@@ -44010,6 +44030,19 @@ var render = function() {
       _c("br"),
       _vm._v(" "),
       _c("br"),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-sm-offset-4 col-sm-4" }, [
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-primary btn-lg btn-block",
+            style: { "background-image": "url('" + _vm.kingSprite + "')" },
+            attrs: { type: "button", id: "find-out-the-king" },
+            on: { click: _vm.getTheKing }
+          },
+          [_c("span", { domProps: { innerHTML: _vm._s(_vm.kingMessage) } })]
+        )
+      ]),
       _vm._v(" "),
       _c("div", { staticClass: "col-sm-12" }, [
         _c("div", { staticClass: "container-fluid" }, [

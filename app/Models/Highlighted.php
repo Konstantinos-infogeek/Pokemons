@@ -9,7 +9,7 @@ class Highlighted extends Model {
 	
 	//Appends accessors to normal queries
 	//In this case to have access to pokemon's name
-	protected $appends = ['name'];
+	protected $appends = ['name', 'statTotal'];
 	
 	protected $fillable = [
 		'pokemon_id',
@@ -20,6 +20,21 @@ class Highlighted extends Model {
 	];
 	
 	/**
+	 * @param $percent
+	 */
+	public static function getMostPowerfull($percent = 10){
+		$result = collect();
+		
+		if(is_numeric($percent)){
+			$pokemons = Highlighted::all()->sortByDesc('statTotal');
+			$limit = round($pokemons->count() * ($percent/100));
+			
+			$result = $pokemons->take($limit);
+		}
+		return $result;
+	}
+	
+	/**
 	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
 	 */
 	public function owner(){
@@ -28,5 +43,9 @@ class Highlighted extends Model {
 	
 	public function getNameAttribute(){
 		return $this->owner->name;
+	}
+	
+	public function getStatTotalAttribute(){
+		return $this->owner->statTotal;
 	}
 }

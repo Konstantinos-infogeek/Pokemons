@@ -3,6 +3,13 @@
         <div class="panel-body">
             <br/>
             <br/>
+
+            <div class="col-sm-offset-4 col-sm-4">
+                <button type="button" v-on:click="getTheKing" :style="{ 'background-image': 'url(\''+ kingSprite +'\')' }" class="btn btn-primary btn-lg btn-block" id="find-out-the-king">
+                    <span v-html="kingMessage"></span>
+                </button>
+            </div>
+
             <div class="col-sm-12">
                 <div class="container-fluid">
                     <div class="row">
@@ -68,7 +75,10 @@
                 pageContent: false, //contains the list of pokemons
                 previous: 0,
                 next: 2,
-                max: 9999
+                max: 9999,
+                king: false,
+                kingMessage: "Find Out The King",
+                kingSprite: '/images/slowking.png'
             };
         },
         //This method downloads the content for the first time
@@ -93,6 +103,17 @@
                             that._data.max         = response.data.last_page;
                         });
                 }
+            },
+            getTheKing: function(){
+                let that = this;
+                axios
+                    .get('/api/v1/pokemon/king')
+                    .then(function (response) {
+                        //Assign new data from api response
+                        that._data.king = response.data;
+                        that._data.kingMessage = "The king is " + '<span class="text-capitalize">' + that._data.king.owner.name + '</span>';
+                        that._data.kingSprite = that._data.king.sprite;
+                    });
             }
         }
     }

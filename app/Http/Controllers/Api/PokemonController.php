@@ -140,6 +140,21 @@ class PokemonController extends ApiController
 	}
 	
 	/**
+	 * Calculates the absolute king of OZ!!!
+	 * a basic lottery function, which selects on of the most powerfull pokemons
+	 * to be king
+	 *
+	 * @return mixed
+	 */
+	public function getTheKing(){
+		$mostPowerfull = Highlighted::getMostPowerfull()->values();
+		
+		return $this->respondWithJson(
+			$mostPowerfull[ mt_rand(0, count($mostPowerfull) - 1) ]
+		);
+	}
+	
+	/**
 	 * @param $url
 	 * @return mixed
 	 */
