@@ -8807,6 +8807,16 @@ Targeted Styles
           transform-origin: 50%;
 }
 
+#important-to-remember dl > dt {
+  margin-top: 1em;
+}
+
+#important-to-remember .remember-command {
+  color: royalblue;
+  font-weight: 600;
+  text-decoration: underline;
+}
+
 #king-panel .poke-thumbnail {
   position: relative;
   min-height: 400px;

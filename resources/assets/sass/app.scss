@@ -417,6 +417,10 @@ Targeted Styles
   }
 }
 
+#important-to-remember {
+  dl > dt { margin-top: 1em;}
+  .remember-command {color: royalblue; font-weight: 600; text-decoration: underline;}
+}
 
 #king-panel {
   .poke-thumbnail {
