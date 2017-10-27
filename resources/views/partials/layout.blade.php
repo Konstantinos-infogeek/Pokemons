@@ -39,7 +39,7 @@
                 <!-- Brand -->
                 <div class="brand-name-wrapper">
                     <a class="navbar-brand" href="#">
-                        {{config('app.name')}} <img style="display: inline-block" src="{{asset('images/pokemon.png')}}" alt="{{config('app.name')}}">
+                        <img class="poke-logo" src="{{asset('images/pokemon.png')}}" alt="{{config('app.name')}}"> {{config('app.name')}}
                     </a>
                 </div>
 

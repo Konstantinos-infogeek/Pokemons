@@ -75,6 +75,8 @@ class PokemonController extends ApiController
 			return $this->respondWithSuccess( [ 'message' => 'Data already exists!' ] );
 		}
 		
+		//Make single api request, remove unnecessary attributes and stores
+		//the result in the array $results
 		$results  = collect( $this->loadTransformedData()['results'] );
 		$pokemons = [];
 		

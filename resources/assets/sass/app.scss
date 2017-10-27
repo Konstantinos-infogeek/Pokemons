@@ -408,11 +408,62 @@ Loader Styles
 
 Targeted Styles
 *************************************/
+.poke-logo {
+  display: inline-block!important;
+  transition: transform 300ms ease-out;
+  &:hover{
+    transform: scale(1.2);
+    transform-origin: 50%;
+  }
+}
 
+
+#king-panel {
+  .poke-thumbnail {
+    position: relative;
+    min-height: 400px;
+    &::before{
+      content: "";
+      display: block;
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      top: 0;
+      left: 80%;
+      background-repeat: no-repeat;
+      background-image: url('/images/crown.png');
+      background-size: 9em;
+      transform: rotate(25deg);
+      transform-origin: 41% -27%;
+
+      z-index: 5;
+    }
+  }
+
+  .lead.stats {
+    margin-top: 2em;
+    display: table;
+    padding: 1em;
+    border-radius: $border-radius-base;
+
+    p { display: table-row; }
+    p > strong, p > span {
+      display: table-cell;
+      height: 2.5em;
+      width: 12em;
+    }
+  }
+  .img-responsive{
+    margin: 3em auto;
+    transform-origin: 50%;
+    transform: scale(1.3);
+  }
+}
 
 #pokemon-table {
-  td, th { text-align: center }
-  td { vertical-align: middle; font-size: 1.3em;}
+  max-height: 1420px;
+  td, th { text-align: center; }
+  td { min-height: 130px; vertical-align: middle; font-size: 1.3em;}
 }
 
 #find-out-the-king {

@@ -73,6 +73,12 @@ Vue.component(
     require('./components/HighlightedPokemonsList.vue')
 );
 
+//King Panel Component
+Vue.component(
+    'pokemon-king-info-panel',
+    require('./components/PokemonKingInfoPanel.vue')
+);
+
 const app = new Vue({
     el: '#app'
 });

@@ -11408,6 +11408,9 @@ Vue.component('highlight-pokemon-form', __webpack_require__(48));
 //List Component
 Vue.component('highlighted-pokemon-list', __webpack_require__(51));
 
+//King Panel Component
+Vue.component('pokemon-king-info-panel', __webpack_require__(64));
+
 var app = new Vue({
     el: '#app'
 });
@@ -44012,6 +44015,7 @@ function evaluatePage(pageNumber) {
                 that._data.king = response.data;
                 that._data.kingMessage = "The king is " + '<span class="text-capitalize">' + that._data.king.owner.name + '</span>';
                 that._data.kingSprite = that._data.king.sprite;
+                broadcaster.$emit('declarePokemonKingCompleted', response.data);
             });
         }
     }
@@ -44183,6 +44187,287 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 55 */,
+/* 56 */,
+/* 57 */,
+/* 58 */,
+/* 59 */,
+/* 60 */,
+/* 61 */,
+/* 62 */,
+/* 63 */,
+/* 64 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(65)
+/* template */
+var __vue_template__ = __webpack_require__(66)
+/* template functional */
+  var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\PokemonKingInfoPanel.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-35fa2700", Component.options)
+  } else {
+    hotAPI.reload("data-v-35fa2700", Component.options)
+' + '  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 65 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+function calculateStringTypes(types) {
+    return types.map(function (current) {
+        return current.type.name;
+    }).join(', ');
+}
+function scrollToBottom() {
+    //Wait a bit and scroll to Kings Panel
+    setTimeout(function () {
+        window.scrollTo(0, document.body.scrollHeight + 400);
+    }, 300);
+}
+
+//Component Module
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            king: false,
+            stats: '',
+            types: ''
+        };
+    },
+    //This method downloads the content for the first time
+    created: function created() {
+        var that = this;
+        broadcaster.$on('declarePokemonKingCompleted', function (data) {
+            that.ChangeKing(data);
+        });
+    },
+
+    methods: {
+        ChangeKing: function ChangeKing(data) {
+            var that = this;
+            var king = data;
+
+            that._data.king = king;
+            that._data.types = calculateStringTypes(king.owner.profile.types);
+            that._data.stats = king.owner.profile.stats;
+
+            //Scroll to Kings Panel
+            scrollToBottom();
+        }
+    }
+});
+
+/***/ }),
+/* 66 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm.king
+    ? _c(
+        "div",
+        { staticClass: "panel panel-default", attrs: { id: "king-panel" } },
+        [
+          _c("div", { staticClass: "panel-body" }, [
+            _c("div", { staticClass: "container-fluid" }, [
+              _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col-md-3 poke-thumbnail" }, [
+                  _c("img", {
+                    staticClass: "img-responsive",
+                    attrs: { src: _vm.king.sprite }
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "h3",
+                    {
+                      staticClass: "text-center",
+                      staticStyle: { color: "purple", "word-spacing": "0.5em" }
+                    },
+                    [_vm._v("Long Live the King!")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-9" }, [
+                  _c("h2", { staticClass: "text-capitalize" }, [
+                    _c("span", { staticStyle: { color: "royalblue" } }, [
+                      _vm._v("King ")
+                    ]),
+                    _vm._v(" "),
+                    _c("strong", [_vm._v(_vm._s(_vm.king.owner.name))]),
+                    _vm._v(" "),
+                    _c("small", { staticStyle: { "font-size": ".5em" } }, [
+                      _vm._v(" Stat Total: "),
+                      _c("em", [_vm._v(_vm._s(_vm.king.statTotal))])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-6" }, [
+                    _c(
+                      "div",
+                      {
+                        staticClass: "lead stats",
+                        staticStyle: { "padding-left": "0" }
+                      },
+                      [
+                        _c("p", [
+                          _c("strong", [_vm._v("Height:")]),
+                          _vm._v(" "),
+                          _c("span", [_vm._v(_vm._s(_vm.king.height))])
+                        ]),
+                        _vm._v(" "),
+                        _c("p", [
+                          _c("strong", [_vm._v("Weight:")]),
+                          _vm._v(" "),
+                          _c("span", [_vm._v(_vm._s(_vm.king.weight))])
+                        ]),
+                        _vm._v(" "),
+                        _c("p", [
+                          _c("strong", [_vm._v("Base Experience")]),
+                          _vm._v(" "),
+                          _c("span", [_vm._v(_vm._s(_vm.king.experience))])
+                        ]),
+                        _vm._v(" "),
+                        _c("p", [
+                          _c("strong", [_vm._v("Types:")]),
+                          _vm._v(" "),
+                          _c("span", [_vm._v(_vm._s(_vm.types))])
+                        ])
+                      ]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-6" }, [
+                    _c(
+                      "div",
+                      {
+                        staticClass: "lead stats",
+                        staticStyle: {
+                          "background-color": "#abc4d3",
+                          color: "#0e0e0e"
+                        }
+                      },
+                      _vm._l(_vm.stats, function(item) {
+                        return _c("p", [
+                          _c("strong", { staticClass: "text-capitalize" }, [
+                            _vm._v(_vm._s(item.stat.name) + ":")
+                          ]),
+                          _vm._v(" "),
+                          _c("span", [_vm._v(_vm._s(item.base_stat))])
+                        ])
+                      })
+                    )
+                  ])
+                ])
+              ])
+            ])
+          ])
+        ]
+      )
+    : _vm._e()
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-35fa2700", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

@@ -113,6 +113,7 @@
                         that._data.king = response.data;
                         that._data.kingMessage = "The king is " + '<span class="text-capitalize">' + that._data.king.owner.name + '</span>';
                         that._data.kingSprite = that._data.king.sprite;
+                        broadcaster.$emit('declarePokemonKingCompleted', response.data);
                     });
             }
         }
