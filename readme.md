@@ -15,7 +15,7 @@ An app which uses the pokemon api to declare a pokemon king.
                             
 
 - __Second Step is taking a long time__<br/><br/>
-If you have the __php.ini__ values already set. Second step will make around 940 http requests, __it ll take several minutes__, if you have the need to have an indication of this __actually working__, there is a commented Logger code line, just before start this step, just uncomment the __line 184 in Api\PokemonController__
+If you have the __php.ini__ values already set. Second step should make around 940 http requests, __it ll take several minutes__, if you have the need to have an indication of this __actually working__, there is a commented Logger code line, just before start this step, just uncomment the __line 184 in Api\PokemonController__
 
 
  Click [Here](https://youtu.be/MGPjD8peGD0) to see a video presentation instead, to have a better grasp of the application</p>
