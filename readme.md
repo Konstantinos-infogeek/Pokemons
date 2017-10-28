@@ -7,8 +7,8 @@ An app which uses the pokemon api to declare a pokemon king.
 - __Edit php.ini__<br/><br/>  set __max_execution_time__ and __max_input_time__ to _3600_ or generally a big number of seconds
 
 - __Run the Laravel Installation__<br/><br/>
-  ```
-  bash composer install
+  ```bash
+  composer install
   npm install
   npm run dev or npm run prod
   ```
